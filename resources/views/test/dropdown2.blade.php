@@ -1,0 +1,3 @@
+
+
+{!!Form::select($nama,$refs)!!}
