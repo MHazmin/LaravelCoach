@@ -36,6 +36,7 @@ class MailController extends Controller {
         Mail::send('emails.test1', ['nama' => 'Hazmin'], function($message) {
             $users = User::all();
             foreach ($users as $user) {
+                
                 $message->to($user->email, $user->name)
                         ->cc('azman120474@gmail.com');
             }
