@@ -6,8 +6,46 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Models\Ref;
+use App\Models\Negeri;
 
 class TestController extends Controller {
+    
+    public function getAngular() {
+        return view('test.angular');
+    }
+    
+    // testting AJAX konsep parent child dropdown box
+    public function getState() {
+        
+        $state = Ref::getData($cat='state');
+       // dd($states);
+        return view('test.state',  compact('state'));
+    }
+    public function getState2() {
+        
+        $state = Negeri::getDataa();
+       // dd($states);
+        return view('test.state2',  compact('state'));
+    }
+    public function getDistrict($state) {
+        $dis = Ref::getData($cat='district',$code='',$param1=$state);
+        dd($dis);
+        return view('test.state',  compact('dis'));
+    }
+    
+    // return dropdown test/ref/state or test/ref/dist/R
+     public function getRef($cat,$param1='',$choose=true) {
+        $refs = Ref::getData($cat,$code='',$param1,$choose);
+        return view('test.dropdown',  compact('refs','cat'));
+    }
+    
+     public function getRef2($idnegeri='',$choose=true) {
+        $refs = \App\Models\Daerah::getData($idnegeri,$choose);
+        $nama= 'daerah';
+        return view('test.dropdown2',  compact('refs','nama'));
+    }
+
 
     public function getValidation() {
         $data = ['ic' => '791130095137'];
