@@ -93,6 +93,7 @@ class TestController extends Controller {
         ];
 
 
+            
 
         $v = \Validator::make($data, $rule, $msg);
         if ($v->passes()) {
